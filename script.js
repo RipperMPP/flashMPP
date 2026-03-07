@@ -135,11 +135,14 @@ const sig_sdis = caserneBrute.split("|")[1];
   }[formation];
 
   // Rappels
-  const rappelsTexte = {
-    aucun:         "Pas de rappel ni avertissement ce mois-ci.",
-    rappel:        "Un ou plusieurs rappels amicaux ont été émis ce mois-ci.",
-    avertissement: "Un ou plusieurs avertissements ont été émis ce mois-ci.",
-  }[rappels];
+ const rappelsTexte = {
+  aucun:         "Pas de rappel ni avertissement ce mois-ci.",
+  rappel_officiel: "Un rappel officiel a été émis ce mois-ci.",
+  avert1:        "Un avertissement de niveau 1 a été émis ce mois-ci.",
+  avert2:        "Un avertissement de niveau 2 a été émis ce mois-ci.",
+  avert3:        "Un avertissement de niveau 3 a été émis ce mois-ci.",
+  avert4:        "Un avertissement de niveau 4 a été émis ce mois-ci.",
+}[rappels];
 
   // Conclusion
   const conclusionTexte = {
@@ -287,4 +290,25 @@ function copierTexte() {
   navigator.clipboard.writeText(texte).then(() => {
     alert("✅ Texte copié dans le presse-papier !");
   });
+}
+function resetFormulaire() {
+  document.getElementById("grade").selectedIndex = 0;
+  document.getElementById("nom").value = "";
+  document.getElementById("aPoste").selectedIndex = 0;
+  document.getElementById("blocPoste").className = "formulaire-cache";
+  document.getElementById("ensemble").selectedIndex = 0;
+  document.getElementById("pa").value = 100;
+  document.getElementById("cp").value = 100;
+  document.getElementById("humeur").value = 100;
+  document.getElementById("presence").selectedIndex = 0;
+  document.getElementById("communication").selectedIndex = 0;
+  document.getElementById("comportement").selectedIndex = 0;
+  document.getElementById("investissement").selectedIndex = 0;
+  document.getElementById("planning").selectedIndex = 0;
+  document.getElementById("epi").selectedIndex = 0;
+  document.getElementById("fma").selectedIndex = 0;
+  document.getElementById("formation").selectedIndex = 0;
+  document.getElementById("rappels").selectedIndex = 0;
+  document.getElementById("resultat").className = "formulaire-cache";
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }

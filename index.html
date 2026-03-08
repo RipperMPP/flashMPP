@@ -34,19 +34,10 @@
   <button class="btn-disabled" disabled>Bientôt</button>
 </div>
 <div class="compteur">
-  <span>👥 Visiteurs : <strong id="compteur-total">...</strong></span>
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=rippermpp.flashMPP" alt="visiteurs" />
 </div>
   </div>
 <p class="signature-auteur">Par Ripper</p>
-<script>
-  fetch("https://api.counterapi.dev/v1/flashmpp-rippermpp/visits/up")
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("compteur-total").innerText = data.count;
-    })
-    .catch(() => {
-      document.getElementById("compteur-total").innerText = "N/A";
-    });
-</script>
 </div>
+
 

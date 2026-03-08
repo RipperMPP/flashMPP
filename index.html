@@ -39,13 +39,14 @@
   </div>
 <p class="signature-auteur">Par Ripper</p>
 <script>
-  fetch("https://counterapi.dev/api/flashmpp/visits/hit")
+  fetch("https://api.counterapi.dev/v1/flashmpp-rippermpp/visits/up")
     .then(res => res.json())
     .then(data => {
-      document.getElementById("compteur-total").innerText = data.value;
+      document.getElementById("compteur-total").innerText = data.count;
     })
     .catch(() => {
       document.getElementById("compteur-total").innerText = "N/A";
     });
 </script>
 </div>
+

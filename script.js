@@ -62,35 +62,34 @@ function genererAvis() {
   const sig_grade     = document.getElementById("sig_grade").value;
   const sig_pseudo    = document.getElementById("sig_pseudo").value;
   const sig_fonction  = document.getElementById("sig_fonction").value;
-  const caserneBrute = document.getElementById("sig_caserne").value;
-const sig_caserne = caserneBrute.split("|")[0];
-const sig_sdis = caserneBrute.split("|")[1];
+  const caserneBrute  = document.getElementById("sig_caserne").value;
+  const sig_caserne   = caserneBrute.split("|")[0];
+  const sig_sdis      = caserneBrute.split("|")[1];
 
   if (!nom || !pa || !cp || !humeur) {
     alert("⚠️ Merci de remplir au moins le pseudo et les statistiques.");
     return;
-  incrementerCompteur();
   }
 
   // Date automatique
   const maintenant = new Date();
   const moisNoms = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
-  const moisTexte  = moisNoms[maintenant.getMonth()];
-  const annee      = maintenant.getFullYear();
-  const jour       = String(maintenant.getDate()).padStart(2, "0");
-  const moisNum    = String(maintenant.getMonth() + 1).padStart(2, "0");
+  const moisTexte    = moisNoms[maintenant.getMonth()];
+  const annee        = maintenant.getFullYear();
+  const jour         = String(maintenant.getDate()).padStart(2, "0");
+  const moisNum      = String(maintenant.getMonth() + 1).padStart(2, "0");
   const dateComplete = `${jour}/${moisNum}/${annee}`;
-  const entete     = `[Avis ${moisTexte} ${annee}]`;
-  const signature = `- Le ${dateComplete} - ${sig_grade} ${sig_pseudo}, ${sig_fonction}, ${sig_caserne}, SDIS ${sig_sdis}`;
+  const entete       = `[Avis ${moisTexte} ${annee}]`;
+  const signature    = `- Le ${dateComplete} - ${sig_grade} ${sig_pseudo}, ${sig_fonction}, ${sig_caserne}, SDIS ${sig_sdis}`;
 
   // Présence
- const article = (grade.startsWith("A") || grade.startsWith("O")) ? "L'" : "Le ";
-const presenceTexte = {
-  quotidienne:  `${article}${grade} ${nom} a une présence quotidienne au sein du CIS.`,
-  reguliere:    `${article}${grade} ${nom} a une présence régulière au sein du CIS.`,
-  irreguliere:  `${article}${grade} ${nom} présente une présence irrégulière au sein du CIS.`,
-  insuffisante: `${article}${grade} ${nom} présente une présence insuffisante au sein du CIS.`,
-}[presence];
+  const article = (grade.startsWith("A") || grade.startsWith("O")) ? "L'" : "Le ";
+  const presenceTexte = {
+    quotidienne:  `${article}${grade} ${nom} a une présence quotidienne au sein du CIS.`,
+    reguliere:    `${article}${grade} ${nom} a une présence régulière au sein du CIS.`,
+    irreguliere:  `${article}${grade} ${nom} présente une présence irrégulière au sein du CIS.`,
+    insuffisante: `${article}${grade} ${nom} présente une présence insuffisante au sein du CIS.`,
+  }[presence];
 
   // Stats
   const statsNote = (pa == 100 && cp == 100 && humeur == 100) ? "excellentes" :
@@ -137,14 +136,14 @@ const presenceTexte = {
   }[formation];
 
   // Rappels
-const rappelsTexte = {
-  aucun:          "Pas de rappel ni avertissement ce mois-ci.",
-  rappel_officiel:"Un rappel officiel a été émis ce mois-ci.",
-  avert1:         "Un avertissement de niveau 1 a été émis ce mois-ci.",
-  avert2:         "Un avertissement de niveau 2 a été émis ce mois-ci.",
-  avert3:         "Un avertissement de niveau 3 a été émis ce mois-ci.",
-  avert4:         "Un avertissement de niveau 4 a été émis ce mois-ci.",
-}[rappels] || "Pas de rappel ni avertissement ce mois-ci.";
+  const rappelsTexte = {
+    aucun:           "Pas de rappel ni avertissement ce mois-ci.",
+    rappel_officiel: "Un rappel officiel a été émis ce mois-ci.",
+    avert1:          "Un avertissement de niveau 1 a été émis ce mois-ci.",
+    avert2:          "Un avertissement de niveau 2 a été émis ce mois-ci.",
+    avert3:          "Un avertissement de niveau 3 a été émis ce mois-ci.",
+    avert4:          "Un avertissement de niveau 4 a été émis ce mois-ci.",
+  }[rappels] || "Pas de rappel ni avertissement ce mois-ci.";
 
   // Conclusion
   const conclusionTexte = {
@@ -285,6 +284,8 @@ const rappelsTexte = {
     <button class="btn-copier" onclick="copierTexte()">📋 Copier le texte</button>
   `;
   resultat.scrollIntoView({ behavior: "smooth" });
+
+  incrementerCompteur();
 }
 
 function copierTexte() {
@@ -293,6 +294,7 @@ function copierTexte() {
     alert("✅ Texte copié dans le presse-papier !");
   });
 }
+
 function resetFormulaire() {
   document.getElementById("grade").selectedIndex = 0;
   document.getElementById("nom").value = "";
@@ -314,6 +316,7 @@ function resetFormulaire() {
   document.getElementById("resultat").className = "formulaire-cache";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 function incrementerCompteur() {
   const url = "https://flashmpp-default-rtdb.europe-west1.firebasedatabase.app/compteur/avis.json";
   fetch(url).then(r => r.json()).then(val => {

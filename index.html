@@ -36,5 +36,18 @@
   </a>
   </div>
   </div>
-<p class="signature-auteur">Par Ripper</p>
+<div style="text-align:center; margin-top:30px;">
+  <button onclick="majSite()" style="background-color:#30363d; font-size:12px; padding:8px 16px;">🔄 Mettre à jour le site</button>
+</div>
+  <p class="signature-auteur">Par Ripper</p>
+<script>
+  function majSite() {
+    if ('caches' in window) {
+      caches.keys().then(names => {
+        names.forEach(name => caches.delete(name));
+      });
+    }
+    location.reload(true);
+  }
+</script>
 </div>

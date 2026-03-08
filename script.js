@@ -83,12 +83,13 @@ const sig_sdis = caserneBrute.split("|")[1];
   const signature = `- Le ${dateComplete} - ${sig_grade} ${sig_pseudo}, ${sig_fonction}, ${sig_caserne}, SDIS ${sig_sdis}`;
 
   // Présence
-  const presenceTexte = {
-    quotidienne:  `Le ${grade} ${nom} a une présence quotidienne au sein du CIS.`,
-    reguliere:    `Le ${grade} ${nom} a une présence régulière au sein du CIS.`,
-    irreguliere:  `Le ${grade} ${nom} présente une présence irrégulière au sein du CIS.`,
-    insuffisante: `Le ${grade} ${nom} présente une présence insuffisante au sein du CIS.`,
-  }[presence];
+ const article = (grade.startsWith("A") || grade.startsWith("O")) ? "L'" : "Le ";
+const presenceTexte = {
+  quotidienne:  `${article}${grade} ${nom} a une présence quotidienne au sein du CIS.`,
+  reguliere:    `${article}${grade} ${nom} a une présence régulière au sein du CIS.`,
+  irreguliere:  `${article}${grade} ${nom} présente une présence irrégulière au sein du CIS.`,
+  insuffisante: `${article}${grade} ${nom} présente une présence insuffisante au sein du CIS.`,
+}[presence];
 
   // Stats
   const statsNote = (pa == 100 && cp == 100 && humeur == 100) ? "excellentes" :

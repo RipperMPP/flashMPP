@@ -66,6 +66,9 @@ function genererAvis() {
   const sig_caserne   = caserneBrute.split("|")[0];
   const sig_sdis      = caserneBrute.split("|")[1];
 
+  const opt_entete    = document.getElementById("opt_entete").checked;
+  const opt_signature = document.getElementById("opt_signature").checked;
+
   if (!nom || !pa || !cp || !humeur) {
     alert("⚠️ Merci de remplir au moins le pseudo et les statistiques.");
     return;
@@ -271,10 +274,12 @@ function genererAvis() {
   }
 
   // Assemblage final
-  let avis = `${entete}\n\n${presenceTexte} ${statsTexte} ${commTexte} ${comportTexte} ${planningTexte} ${epiTexte} ${formationTexte} ${fmaTexte}`;
+  let avis = "";
+  if (opt_entete) avis += `${entete}\n\n`;
+  avis += `${presenceTexte} ${statsTexte} ${commTexte} ${comportTexte} ${planningTexte} ${epiTexte} ${formationTexte} ${fmaTexte}`;
   if (posteTexte) avis += ` ${posteTexte}`;
   avis += ` ${rappelsTexte} ${conclusionTexte}`;
-  avis += `\n\n${signature}`;
+  if (opt_signature) avis += `\n\n${signature}`;
 
   const resultat = document.getElementById("resultat");
   resultat.className = "formulaire-visible";
@@ -313,6 +318,8 @@ function resetFormulaire() {
   document.getElementById("fma").selectedIndex = 0;
   document.getElementById("formation").selectedIndex = 0;
   document.getElementById("rappels").selectedIndex = 0;
+  document.getElementById("opt_entete").checked    = false;
+  document.getElementById("opt_signature").checked  = false;
   document.getElementById("resultat").className = "formulaire-cache";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }

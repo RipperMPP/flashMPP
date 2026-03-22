@@ -14,7 +14,7 @@
 
     <!-- IDENTITÉ -->
     <div class="section">
-      <h3>👤 Identité</h3> 
+      <h3>👤 Identité</h3>
       <div class="champ">
         <label>Grade</label>
         <select id="grade">
@@ -343,6 +343,19 @@
     <!-- SIGNATURE -->
     <div class="section">
       <h3>✍️ Signature</h3>
+
+      <div class="champ champ-toggle">
+        <label class="toggle-label">
+          <input type="checkbox" id="opt_entete" />
+          Inclure l'en-tête <code>[Avis Mois-Année]</code>
+        </label>
+      </div>
+      <div class="champ champ-toggle">
+        <label class="toggle-label">
+          <input type="checkbox" id="opt_signature" />
+          Inclure la ligne de signature
+        </label>
+      </div>
       <div class="champ">
         <label>Ton grade</label>
         <select id="sig_grade">
